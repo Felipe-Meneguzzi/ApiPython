@@ -1,12 +1,13 @@
 from enums.UserTypeEnum import UserTypeEnum
 from pydantic import BaseModel
+from typing import Optional
 
 class UserEntity(BaseModel):
-    id: int
     name: str
     password: str
     user_type: UserTypeEnum
     active: bool
+    id: Optional[int] = None
 
     def __str__(self) -> str:
         return f"User(id={self.id}, name={self.name}, password={self.password}, user_type={self.user_type.portuguese()}, active={bool(self.active)})"
