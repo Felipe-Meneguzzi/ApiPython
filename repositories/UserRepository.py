@@ -1,0 +1,32 @@
+from repositories.BaseRepository import BaseRepository
+from entities.UserEntity import UserEntity 
+from enums.UserTypeEnum import UserTypeEnum
+
+class UserRepository(BaseRepository):
+    def get_all_users(self):
+        self.cursor.execute("SELECT * FROM users")
+        rows = self.cursor.fetchall()
+        users = []
+        for row in rows:
+            user = UserEntity(
+                id=row['id'],
+                name=row['name'],
+                password=row['password'],
+                user_type=UserTypeEnum.from_value(row['user_type']),
+                active=row['active']
+            )
+            users.append(user)
+        return users
+    
+    def get_user_by_id(self, user_id: int):
+        self.cursor.execute("SELECT * FROM users WHERE id = ?", (user_id,))
+        row = self.cursor.fetchone()
+        if row:
+            return UserEntity(
+                id=row['id'],
+                name=row['name'],
+                password=row['password'],
+                user_type=UserTypeEnum.from_value(row['user_type']),
+                active=row['active']
+            )
+        return None
