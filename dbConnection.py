@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+
 class DatabaseConnection:
     _instance = None  # Atributo de classe para armazenar a instância única
 
@@ -13,11 +14,17 @@ class DatabaseConnection:
         return cls._instance
 
     def __init__(self):
-        if not hasattr(self, "connection"):  # Evita reexecutar o __init__ em chamadas subsequentes
+        # Evita reexecutar o __init__ em chamadas subsequentes
+        if not hasattr(self, "connection"):
             self.connection = None
             self.connect()
 
     def connect(self):
+        print(os.getenv("DB_HOST"),
+              os.getenv("DB_USER"),
+              os.getenv("DB_PASSWORD"),
+              os.getenv("DB_NAME"),
+              os.getenv("DB_PORT"))
         try:
             self.connection = mariadb.connect(
                 host=os.getenv("DB_HOST"),

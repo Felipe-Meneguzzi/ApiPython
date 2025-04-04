@@ -16,6 +16,10 @@ services:
       - DB_NAME=${DB_NAME}
     depends_on:
       - mariadb
+    env_file:
+      - .env
+    volumes:
+      - .:/app
 
   mariadb:
     image: mariadb:10.5

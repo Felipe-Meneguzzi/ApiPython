@@ -6,11 +6,29 @@
     "customizations": {
       "vscode": {
         "settings": {
-          "python.defaultInterpreterPath": "/usr/local/bin/python"
+          "workbench.iconTheme": "material-icon-theme",
+          "workbench.colorTheme": "Dracula Theme",
+          "python.defaultInterpreterPath": "/usr/local/bin/python",
+          "[python]": {
+            "diffEditor.ignoreTrimWhitespace": false,
+            "editor.defaultColorDecorators": "never",
+            "editor.defaultFormatter": "ms-python.autopep8",
+            "editor.formatOnSave": true,
+            "editor.formatOnType": true,
+            "editor.wordBasedSuggestions": "off"
+          },
+          "files.exclude": {
+            "**/__pycache__": true
+          },
+          "extensions.ignoreRecommendations": true
         },
         "extensions": [
           "ms-python.python",
-          "ms-python.vscode-pylance"
+          "ms-python.vscode-pylance",
+          "ms-python.debugpy",
+          "ms-python.autopep8",
+          "dracula-theme.theme-dracula",
+          "PKief.material-icon-theme"
         ]
       }
     }
