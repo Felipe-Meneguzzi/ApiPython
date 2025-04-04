@@ -18,16 +18,12 @@ class service():
         except:
             return BaseService.send_exception("Dados de usuario invalidos, confira a documentacao", HTTPStatus.BAD_REQUEST)
         
-        if user.name == None or user.name == "":
-            return BaseService.send_exception("Nome do usuario nao informado", HTTPStatus.BAD_REQUEST)
+        error = service.validate_user(user)
+
+        if error != None:
+            return error
         
-        if user.password == None or user.password == "":
-            return BaseService.send_exception("Senha do usuario nao informada", HTTPStatus.BAD_REQUEST)
-        
-        if user.active == None:
-            return BaseService.send_exception("Usuario ativo nao informado", HTTPStatus.BAD_REQUEST)
-        
-        repository.create_user(user)
+        user = repository.create_user(user)
 
         repository.connection.commit()
 
@@ -38,3 +34,17 @@ class service():
         }
 
         return BaseService.send_response(response, HTTPStatus.CREATED)
+
+    def validate_user(user: UserEntity):
+        if user.name == None or user.name == "":
+            return BaseService.send_exception("Nome do usuario nao informado", HTTPStatus.BAD_REQUEST)
+        
+        if user.password == None or user.password == "":
+            return BaseService.send_exception("Senha do usuario nao informada", HTTPStatus.BAD_REQUEST)
+        
+        buscaNome = repository.get_user_by_name(user.name)
+        if buscaNome != None:
+            return BaseService.send_exception("Usuario ja cadastrado", HTTPStatus.BAD_REQUEST)
+        
+        return None
+        
