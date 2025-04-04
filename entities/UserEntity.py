@@ -2,19 +2,21 @@ from enums.UserTypeEnum import UserTypeEnum
 from pydantic import BaseModel
 from typing import Optional
 
+
 class UserEntity(BaseModel):
     name: str
+    login: str
     password: str
     user_type: UserTypeEnum
     active: bool
     id: Optional[int] = None
 
     def __str__(self) -> str:
-        return f"User(id={self.id}, name={self.name}, password={self.password}, user_type={self.user_type.portuguese()}, active={bool(self.active)})"
-    
+        return f"User(id={self.id}, name={self.name}, login={self.login}, password={self.password}, user_type={self.user_type.portuguese()}, active={bool(self.active)})"
+
     def model_dump(self, *args, **kwargs) -> dict:
         data = super().model_dump(*args, **kwargs)
-        data.pop("password", None) 
+        data.pop("password", None)
         return data
 
     class Config:

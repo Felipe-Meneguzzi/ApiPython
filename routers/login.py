@@ -21,15 +21,12 @@ async def login(request: Request,
                                   }
                                   )):
     """
+
     Realiza o login
+    - **login**: login do usuario
+    - **password**: senha do usuario
 
     """
-    # body = await request.json()
-    # from services.users.create_user import service
-    # return service.create_user(body)
-    return ResponseBody(status_code=HTTPStatus.OK,
-                        success=True,
-                        data={
-                            "token": "token"
-                        },
-                        metadata=None)
+    body = await request.json()
+    from services.login.login import service
+    return service.login(body)
