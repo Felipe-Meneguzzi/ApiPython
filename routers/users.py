@@ -23,7 +23,6 @@ async def get_user_with_id(id=Query(None, description="ID do usuario consultado"
              tags=["users"],
              response_description="Retorna o usuario criado",
              summary="Criar usuario",
-             description="Cria um usuario com os dados informados no corpo da requisicao"
              )
 async def create_user(request: Request,
                       body: dict = Body(...,
@@ -35,11 +34,12 @@ async def create_user(request: Request,
                                         }
                                         )):
     """
+    -------------
     Criar um usuario. O usuario e criado com o status ativo por padrao.
     - **name**: nome do usuario
     - **password**: senha do usuario
     - **user_type**: tipo do usuario (1 - Admin | 2 - Comum | 3 - Observador)
-
+    -------------
     """
     body = await request.json()
     from services.users.create_user import service
