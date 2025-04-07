@@ -12,7 +12,7 @@ class UserEntity(BaseModel):
     id: Optional[int] = None
 
     def __str__(self) -> str:
-        return f"User(id={self.id}, name={self.name}, login={self.login}, password={self.password}, user_type={self.user_type.portuguese()}, active={bool(self.active)})"
+        return f"User(id={self.id}, name={self.name}, login={self.login}, password={self.password}, user_type={self.user_type}, active={bool(self.active)})"
 
     def model_dump(self, *args, **kwargs) -> dict:
         data = super().model_dump(*args, **kwargs)
