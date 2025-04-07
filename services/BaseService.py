@@ -1,6 +1,6 @@
 from http import HTTPStatus
 from fastapi.responses import JSONResponse
-from services.ResponseBody import ResponseBody
+from valueObjects.ResponseBody import ResponseBody
 
 
 class BaseService:

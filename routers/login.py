@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Query, Request, Body
-from services.ResponseBody import ResponseBody
+from valueObjects.ResponseBody import ResponseBody
 from http import HTTPStatus
 
 router = APIRouter()
