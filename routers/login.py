@@ -5,7 +5,7 @@ from http import HTTPStatus
 router = APIRouter()
 
 
-@router.post("/login",
+@router.post("",
              response_model=ResponseBody,
              status_code=HTTPStatus.OK,
              tags=["login"],

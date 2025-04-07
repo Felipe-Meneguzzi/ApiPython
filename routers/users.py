@@ -7,7 +7,7 @@ from http import HTTPStatus
 router = APIRouter()
 
 
-@router.get("/users", response_model=object, status_code=HTTPStatus.OK, tags=["users"])
+@router.get("", response_model=object, status_code=HTTPStatus.OK, tags=["users"])
 async def get_users(
     page: int = Query(
         1, description="Numero da pagina"),
@@ -27,13 +27,13 @@ async def get_users(
     return service.get_users(page_obj)
 
 
-@router.get("/users/with-id", response_model=object, status_code=HTTPStatus.OK, tags=["users"])
+@router.get("/with-id", response_model=object, status_code=HTTPStatus.OK, tags=["users"])
 async def get_user_with_id(id=Query(None, description="ID do usuario consultado")):
     from services.users.get_user_with_id import service
     return service.get_user_with_id(id)
 
 
-@router.post("/users",
+@router.post("",
              response_model=ResponseBody,
              status_code=HTTPStatus.CREATED,
              tags=["users"],

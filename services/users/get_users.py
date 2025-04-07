@@ -8,11 +8,7 @@ class service():
     def get_users(page_obj: PageObject = None):
         users = repository.get_all_users(page_obj)
         total_count = repository.get_total_count()
-        metadata = {"total_count": total_count,
-                    "page": page_obj.page,
-                    "page_size": page_obj.page_size,
-                    "sort": page_obj.sort,
-                    "sort_direction": page_obj.sort_direction}
+        metadata = {"total_count": total_count}
         if not users:
             return BaseService.send_exception(message="Nenhum usuario encontrado", status_code=HTTPStatus.NOT_FOUND)
 
