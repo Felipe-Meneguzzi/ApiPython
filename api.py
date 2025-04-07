@@ -6,7 +6,7 @@ from handlers.Exceptions import (
     custom_route_not_found_exception_handler,
     custom_internal_server_error_handler,
 )
-from middlewares.auth import AuthMiddleware
+from middlewares.AuthMiddleware import AuthMiddleware
 
 app = FastAPI()
 
