@@ -1,4 +1,4 @@
-from enums.UserTypeEnum import UserTypeEnum
+from src.enums.UserTypeEnum import UserTypeEnum
 from pydantic import BaseModel
 from typing import Optional
 

@@ -1,7 +1,7 @@
-from repositories.BaseRepository import BaseRepository
-from entities.UserEntity import UserEntity
-from enums.UserTypeEnum import UserTypeEnum
-from valueObjects.PageObject import PageObject
+from src.repositories.BaseRepository import BaseRepository
+from src.entities.UserEntity import UserEntity
+from src.enums.UserTypeEnum import UserTypeEnum
+from src.valueObjects.PageObject import PageObject
 
 
 class UserRepository(BaseRepository):

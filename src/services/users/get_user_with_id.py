@@ -1,5 +1,5 @@
-from services.BaseService import BaseService, HTTPStatus
-from repositories.UserRepository import UserRepository
+from src.services.BaseService import BaseService, HTTPStatus
+from src.repositories.UserRepository import UserRepository
 repository = UserRepository()
 
 

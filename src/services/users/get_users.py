@@ -1,6 +1,6 @@
-from services.BaseService import BaseService, HTTPStatus
-from repositories.UserRepository import UserRepository
-from valueObjects.PageObject import PageObject
+from src.services.BaseService import BaseService, HTTPStatus
+from src.repositories.UserRepository import UserRepository
+from src.valueObjects.PageObject import PageObject
 repository = UserRepository()
 
 

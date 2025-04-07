@@ -1,7 +1,7 @@
-from services.BaseService import BaseService, HTTPStatus
-from repositories.UserRepository import UserRepository
-from entities.UserEntity import UserEntity
-from enums.UserTypeEnum import UserTypeEnum
+from src.services.BaseService import BaseService, HTTPStatus
+from src.repositories.UserRepository import UserRepository
+from src.entities.UserEntity import UserEntity
+from src.enums.UserTypeEnum import UserTypeEnum
 from passlib.hash import bcrypt
 repository = UserRepository()
 

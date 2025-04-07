@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Query, Request, Body
-from valueObjects.ResponseBody import ResponseBody
 from http import HTTPStatus
+from src.valueObjects.ResponseBody import ResponseBody
 
 router = APIRouter()
 
@@ -28,5 +28,5 @@ async def login(request: Request,
 
     """
     body = await request.json()
-    from services.login.login import service
+    from src.services.login.login import service
     return service.login(body)

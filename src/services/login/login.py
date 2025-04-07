@@ -1,6 +1,6 @@
-from services.BaseService import BaseService, HTTPStatus
-from repositories.UserRepository import UserRepository
-from valueObjects.AuthTokenObject import create_token
+from src.services.BaseService import BaseService, HTTPStatus
+from src.repositories.UserRepository import UserRepository
+from src.valueObjects.AuthTokenObject import create_token
 from passlib.hash import bcrypt
 repository = UserRepository()
 

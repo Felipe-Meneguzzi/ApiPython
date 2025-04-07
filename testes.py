@@ -1,5 +1,5 @@
-from valueObjects.AuthTokenObject import create_token, decode_token
-from entities.UserEntity import UserEntity
+from src.valueObjects.AuthTokenObject import create_token, decode_token
+from src.entities.UserEntity import UserEntity
 
 new_user = UserEntity(id=1, name="Lucas", login="lucas",
                       password="123456", user_type=1, active=True)

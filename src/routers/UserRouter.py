@@ -1,8 +1,7 @@
-from services.users.get_users import service
 from fastapi import APIRouter, Query, Request, Body
-from valueObjects.ResponseBody import ResponseBody
-from valueObjects.PageObject import PageObject
 from http import HTTPStatus
+from src.valueObjects.ResponseBody import ResponseBody
+from src.valueObjects.PageObject import PageObject
 
 router = APIRouter()
 
@@ -24,12 +23,13 @@ async def get_users(
 ):
     page_obj = PageObject(page=page, page_size=page_size, sort=sort,
                           sort_direction=sort_direction, search=search, filters=filters)
+    from src.services.users.get_users import service
     return service.get_users(page_obj)
 
 
 @router.get("/with-id", response_model=object, status_code=HTTPStatus.OK, tags=["users"])
 async def get_user_with_id(id=Query(None, description="ID do usuario consultado")):
-    from services.users.get_user_with_id import service
+    from src.services.users.get_user_with_id import service
     return service.get_user_with_id(id)
 
 
@@ -58,5 +58,5 @@ async def create_user(request: Request,
     -------------
     """
     body = await request.json()
-    from services.users.create_user import service
+    from src.services.users.create_user import service
     return service.create_user(body)

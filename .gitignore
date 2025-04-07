@@ -1,9 +1,8 @@
-# Ignore Python compiled files
 *.pyc
 *.pyo
 *.pyd
 __pycache__/
 .env
-
-# Ignore __init__ files
+testes.py
 __init__.py
+

@@ -1,4 +1,4 @@
-from services.BaseService import BaseService, HTTPStatus
+from src.services.BaseService import BaseService, HTTPStatus
 
 
 class service():
