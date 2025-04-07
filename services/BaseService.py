@@ -15,7 +15,7 @@ class BaseService:
 
     def build_response_body(data, status_code: HTTPStatus = HTTPStatus.OK, metadata: dict = None):
         return ResponseBody(
-            success=1,  # status_code.is_success,
+            success=199 < status_code < 300,
             status_code=status_code,
             data=data,
             metadata=metadata
