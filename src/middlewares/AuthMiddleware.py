@@ -1,7 +1,7 @@
 from fastapi import Request
 from starlette.middleware.base import BaseHTTPMiddleware
-from services.BaseService import BaseService, HTTPStatus
-from valueObjects.AuthTokenObject import decode_token
+from src.services.BaseService import BaseService, HTTPStatus
+from src.valueObjects.AuthTokenObject import decode_token
 
 
 class AuthMiddleware(BaseHTTPMiddleware):

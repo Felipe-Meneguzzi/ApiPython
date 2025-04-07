@@ -1,5 +1,5 @@
 import jwt
-import entities.UserEntity as UserEntity
+import src.entities.UserEntity as UserEntity
 from datetime import datetime, timedelta
 from dotenv import load_dotenv
 import os

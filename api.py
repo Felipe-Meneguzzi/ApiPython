@@ -1,13 +1,13 @@
 from fastapi import FastAPI, Depends
 from starlette.middleware import Middleware
-from middlewares import AuthMiddleware
 from starlette.exceptions import HTTPException as StarletteHTTPException
-from routers import LoginRouter, UserRouter
-from handlers.ExceptionsHandler import (
+from src.middlewares import AuthMiddleware
+from src.routers import LoginRouter, UserRouter
+from src.middlewares.AuthMiddleware import AuthMiddleware
+from src.handlers.ExceptionsHandler import (
     custom_route_not_found_exception_handler,
     custom_internal_server_error_handler,
 )
-from middlewares.AuthMiddleware import AuthMiddleware
 
 auth_app = FastAPI(middleware=[Middleware(AuthMiddleware)])
 auth_app.include_router(router=UserRouter.router, prefix="/users")
