@@ -1,10 +1,16 @@
 import jwt
 import entities.UserEntity as UserEntity
 from datetime import datetime, timedelta
+from dotenv import load_dotenv
+import os
+
+
+load_dotenv()
+
 
 SECRET_KEY: str = "vamo_vamo_inter_2006"
 ALGORITHM: str = "HS256"
-MINUTES_TO_EXPIRE: int = 5
+MINUTES_TO_EXPIRE: int = int(os.getenv("TOKEN_DURATION"))
 
 
 def create_token(user: UserEntity):
