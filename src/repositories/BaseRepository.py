@@ -1,4 +1,4 @@
-from DbConnection import DatabaseConnection
+from src.DbConnection import DatabaseConnection
 
 
 class BaseRepository:
