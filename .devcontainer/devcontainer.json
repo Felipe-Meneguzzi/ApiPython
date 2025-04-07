@@ -20,7 +20,11 @@
           "files.exclude": {
             "**/__pycache__": true
           },
-          "extensions.ignoreRecommendations": true
+          "extensions.ignoreRecommendations": true,
+          "material-icon-theme.folders.associations": {
+            "entities": "webpack",
+            "valueObjects": "container"
+          }
         },
         "extensions": [
           "ms-python.python",
