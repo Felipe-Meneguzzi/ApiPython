@@ -1,14 +1,30 @@
+from services.users.get_users import service
 from fastapi import APIRouter, Query, Request, Body
 from services.ResponseBody import ResponseBody
+from valueObjects.PageObject import PageObject
 from http import HTTPStatus
 
 router = APIRouter()
 
 
 @router.get("/users", response_model=object, status_code=HTTPStatus.OK, tags=["users"])
-async def get_users():
-    from services.users.get_users import service
-    return service.get_users()
+async def get_users(
+    page: int = Query(
+        1, description="Numero da pagina"),
+    page_size: int = Query(
+        10, description="Tamanho da pagina"),
+    sort: str = Query(
+        "id", description="Campo para ordenacao"),
+    sort_direction: str = Query(
+        "asc", description="Direcao da ordenacao (asc ou desc)"),
+    search: str = Query(
+        None, description="Campos para busca, recebe um dict"),
+    filters: str = Query(
+        None, description="Campos para filtro, recebe um dict")
+):
+    page_obj = PageObject(page=page, page_size=page_size, sort=sort,
+                          sort_direction=sort_direction, search=search, filters=filters)
+    return service.get_users(page_obj)
 
 
 @router.get("/users/with-id", response_model=object, status_code=HTTPStatus.OK, tags=["users"])
@@ -38,7 +54,7 @@ async def create_user(request: Request,
     Criar um usuario. O usuario e criado com o status ativo por padrao.
     - **name**: nome do usuario
     - **password**: senha do usuario
-    - **user_type**: tipo do usuario (1 - Admin | 2 - Comum | 3 - Observador)
+    - **user_type**: tipo do usuario(1 - Admin | 2 - Comum | 3 - Observador)
     -------------
     """
     body = await request.json()
