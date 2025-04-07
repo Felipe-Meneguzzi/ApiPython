@@ -20,11 +20,6 @@ class DatabaseConnection:
             self.connect()
 
     def connect(self):
-        print(os.getenv("DB_HOST"),
-              os.getenv("DB_USER"),
-              os.getenv("DB_PASSWORD"),
-              os.getenv("DB_NAME"),
-              os.getenv("DB_PORT"))
         try:
             self.connection = mariadb.connect(
                 host=os.getenv("DB_HOST"),
