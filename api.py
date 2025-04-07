@@ -1,5 +1,6 @@
 from fastapi import FastAPI, Depends
-from starlette.middleware.base import BaseHTTPMiddleware
+from starlette.middleware import Middleware
+from middlewares import AuthMiddleware
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from routers import LoginRouter, UserRouter
 from handlers.ExceptionsHandler import (
@@ -8,15 +9,16 @@ from handlers.ExceptionsHandler import (
 )
 from middlewares.AuthMiddleware import AuthMiddleware
 
+auth_app = FastAPI(middleware=[Middleware(AuthMiddleware)])
+auth_app.include_router(router=UserRouter.router, prefix="/users")
+
 app = FastAPI()
 
 # Registrar as rotass
-app.include_router(router=UserRouter.router, prefix="/users",
-                   dependencies=[Depends(AuthMiddleware)])
+app.mount("/auth", auth_app)
 
 app.include_router(router=LoginRouter.router, prefix="/login")
 
-# Registrar os handlers personalizados
 app.add_exception_handler(StarletteHTTPException,
                           custom_route_not_found_exception_handler)
 app.add_exception_handler(Exception, custom_internal_server_error_handler)
