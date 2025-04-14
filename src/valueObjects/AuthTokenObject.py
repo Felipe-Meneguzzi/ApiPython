@@ -25,8 +25,8 @@ def create_token(user: UserEntity):
 def decode_token(token: str):
     try:
         info = jwt.decode(jwt=token, key=SECRET_KEY, algorithms=[ALGORITHM])
-        return info
+        return dict(info)
     except jwt.ExpiredSignatureError:
-        return "E"
+        return str("E")
     except jwt.InvalidTokenError:
-        return "I"
+        return str("I")
