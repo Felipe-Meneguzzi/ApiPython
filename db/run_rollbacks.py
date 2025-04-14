@@ -12,7 +12,6 @@ def run_rollbacks():
     rollbacks_path = os.path.join(os.path.dirname(__file__), "rollbacks")
 
     connection = get_db_connection()
-
     cursor = connection.cursor()
 
     # Listar arquivos de rollbacks em ordem

@@ -12,7 +12,6 @@ def run_migrations():
     migrations_path = os.path.join(os.path.dirname(__file__), "migrations")
 
     connection = get_db_connection()
-
     cursor = connection.cursor()
 
     # Listar arquivos de migrations em ordem
