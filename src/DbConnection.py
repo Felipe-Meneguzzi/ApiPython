@@ -1,12 +1,11 @@
-import mariadb
-import os
 from dotenv import load_dotenv
+from src.utils.DbConnectionScript import get_db_connection
 
 load_dotenv()
 
 
 class DatabaseConnection:
-    _instance = None  # Atributo de classe para armazenar a instância única
+    _instance = None  # Atributo de classe para armazenar a instancia unica
 
     def __new__(cls, *args, **kwargs):
         if cls._instance is None:
@@ -20,18 +19,7 @@ class DatabaseConnection:
             self.connect()
 
     def connect(self):
-        try:
-            self.connection = mariadb.connect(
-                host=os.getenv("DB_HOST"),
-                user=os.getenv("DB_USER"),
-                password=os.getenv("DB_PASSWORD"),
-                database=os.getenv("DB_NAME"),
-                port=int(os.getenv("DB_PORT"))
-            )
-            print("Database connection established successfully.")
-        except mariadb.Error as err:
-            print("Error connecting to MariaDB Platform: ", err)
-            exit(1)
+        self.connection = get_db_connection()
 
     def get_connection(self):
         return self.connection
