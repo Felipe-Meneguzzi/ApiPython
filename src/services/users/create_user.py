@@ -2,7 +2,7 @@ from src.services.BaseService import BaseService, HTTPStatus
 from src.repositories.UserRepository import UserRepository
 from src.entities.UserEntity import UserEntity
 from src.enums.UserTypeEnum import UserTypeEnum
-from passlib.hash import bcrypt
+from src.utils.PasswordScript import generate_hash
 repository = UserRepository()
 
 
@@ -12,7 +12,7 @@ class service():
             user = UserEntity(
                 name=body['name'],
                 login=body['login'],
-                password=bcrypt.hash(body['password']),
+                password=generate_hash(body['password']),
                 user_type=UserTypeEnum.from_value(body['user_type']),
                 active=1,
             )

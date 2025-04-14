@@ -1,7 +1,7 @@
 from src.services.BaseService import BaseService, HTTPStatus
 from src.repositories.UserRepository import UserRepository
 from src.valueObjects.AuthTokenObject import create_token
-from passlib.hash import bcrypt
+from src.utils.PasswordScript import verify_hash
 repository = UserRepository()
 
 
@@ -23,7 +23,7 @@ class service():
         if not user.active:
             return BaseService.send_response(data="Usuario inativo", status_code=HTTPStatus.UNAUTHORIZED)
 
-        if not bcrypt.verify(body['password'], user.password):
+        if not verify_hash(body['password'], user.password):
             return BaseService.send_response(data="Senha incorreta", status_code=HTTPStatus.UNAUTHORIZED)
 
         token = create_token(user)

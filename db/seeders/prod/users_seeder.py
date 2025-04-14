@@ -1,10 +1,7 @@
 from dotenv import load_dotenv
 import mariadb
-import random
 from src.utils.DbConnectionScript import get_db_connection
-from faker import Faker
 
-fake = Faker('pt_BR')
 
 try:
 
